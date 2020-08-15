@@ -6,6 +6,6 @@ Horas Trabajadas * Precio por Hora.
 En el caso de los Asociados el sueldo se calcula tomando en cuenta su
 sueldo fijo más la cantidad de productos vendidos por 20.
 1) El sistema deberá presentar el total de los sueldos a pagar.
-2) El promedio de sueldos de los traajadores Contratados
+2) El promedio de sueldos de los trabajadores Contratados
 3) Los datos del trabajador que gana más, considerar que no hay empates.
 =end
