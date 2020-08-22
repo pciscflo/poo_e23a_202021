@@ -30,10 +30,38 @@ class ProfesorTC < Profesor
 		sueldoFijo - porcAfp*sueldoFijo
     end
 end
+class Administrador
+
+    attr_accessor :arregloProfesores
+
+	def initialize(nombre)
+        @nombre = nombre
+        @arregloProfesores =[]
+	end
+
+	def agregar(profesor)
+		arregloProfesores.push(profesor)
+	end
+
+	def calcularPlanilla
+		suma = 0
+		for profesor in arregloProfesores
+            suma+=profesor.calcularSueldoNeto
+		end
+		return suma
+	end
+end
+
+
 
 ptp1 = ProfesorTP.new("2001", "888888888", "Luis", 20, 40)
 ptc1 = ProfesorTC.new("2003", "99999999", "Juan", 2400, 0.11)
 
 puts "Nombre: #{ptp1.nombre} tiene un sueldo neto: #{ptp1.calcularSueldoNeto}"
 puts "Nombre: #{ptc1.nombre} tiene un sueldo neto: #{ptc1.calcularSueldoNeto}"
+
+adm = Administrador.new("Carlos")
+adm.agregar(ptp1)
+adm.agregar(ptc1)
+puts "Planilla: #{adm.calcularPlanilla}"
 
