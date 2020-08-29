@@ -54,6 +54,29 @@ class Administrador
   	end
   	return ganador
   end
+  def imprimirListado
+    puts "***** LIstado ***********"
+     for trabajador in arregloTrabajadores
+       puts "#{trabajador.nombre}  #{trabajador.calcularSueldo}"
+     end
+  end
+  def obtenerListadoGanan1200
+     tempo =[]
+     for trabajador in arregloTrabajadores
+      if trabajador.calcularSueldo > 1200
+       tempo.push(trabajador)
+      end
+     end
+     return tempo
+  end
+  def imprimirListadoGanamas1200
+     puts "***** LIstado de los que ganan mas de 1200 ***********"
+     for trabajador in arregloTrabajadores
+      if trabajador.calcularSueldo > 1200
+       puts "#{trabajador.nombre}  #{trabajador.calcularSueldo}"
+      end
+     end
+  end
 end
 #test
 t1 = Trabajador.new("Pepe","Contratado",20, 50)
@@ -71,3 +94,11 @@ puts "******************************************"
 puts "Suma de sueldos: #{administrador.calcularSumaSueldos}"
 ganador =  administrador.obtenerTrabajadorGanaMas
 puts "Quien gana mas: #{ganador.nombre} cuyo sueldo es #{ganador.calcularSueldo}"
+puts "*************************************"
+administrador.imprimirListado
+administrador.imprimirListadoGanamas1200
+arreglo = administrador.obtenerListadoGanan1200
+puts "*********** Reporte de Los que ganan ms de 1200 ***********"
+for p in arreglo
+  puts "#{p.nombre}   #{p.calcularSueldo}"
+end
