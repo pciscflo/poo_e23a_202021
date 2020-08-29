@@ -20,7 +20,7 @@ class FanMasacre < Concursante
       @puntajeEquipo = puntajeEquipo
    end
    def calcularPuntaje
-    return cantidadMensajesTexto*4 + puntajeEquipo + puntajeEquipo*2
+    return cantidadMensajesTexto*4 + puntajeBarra + puntajeEquipo*2
    end
 
 end
@@ -44,7 +44,11 @@ class Administrador
       @concursantes =[]
    end
    def registrar(concursante)
-     concursantes.push(concursante)
+     if concursante.edad >=18
+       concursantes.push(concursante)
+     else
+      puts "No está permitido ingreso de menores"
+     end
    end
    def obtenerGanador
        maximo = 0
@@ -60,8 +64,8 @@ class Administrador
 end
 
 fan1 = FanMasacre.new("88888888", "Carlos", "Perez", 30, 200, "nuclear", 200, 100)
-tele1 = Televidente.new("99999999", "Luis", "Suarez", 30, 190, 3849505, 240)
-tele2 = Televidente.new("77777777", "Jose", "Torres", 24, 200, 3849205, 120)
+tele1 = Televidente.new("99999999", "Luis", "Suarez", 15, 190, 3849505, 240)
+tele2 = Televidente.new("77777777", "Jose", "Torres", 29, 200, 3849205, 120)
 
 adm = Administrador.new("Roberto")
 adm.registrar(fan1)
