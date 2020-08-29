@@ -7,6 +7,13 @@ class Concursante
       @edad = edad
       @cantidadMensajesTexto = cantidadMensajesTexto
    end
+   def validar
+      if edad>=18
+        return true
+      else
+          return false
+      end
+   end
    def calcularPuntaje
    end
 end
@@ -44,7 +51,7 @@ class Administrador
       @concursantes =[]
    end
    def registrar(concursante)
-     if concursante.edad >=18
+    if concursante.validar
        concursantes.push(concursante)
      else
       puts "No está permitido ingreso de menores"
