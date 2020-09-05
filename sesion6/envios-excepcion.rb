@@ -55,7 +55,7 @@ class Jefe
    def verificarExistencia(codigo) #retorna true si existe "Peligro!!!"
    	  for envio in arregloEnvios
          if envio.codigoEnvio == codigo
-         	raise "Error codigo ya existe!!!"
+         	raise "Error codigo ya existe!!!" #el origen ya tiene el mensaje al cliente
          end
    	  end
    	  return false
