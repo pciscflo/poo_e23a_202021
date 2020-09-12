@@ -65,14 +65,6 @@ class Jefe
    	  return false
    end
 
-   def imprimirEnviosMaritimos
-   	   puts "Envios Maritimos **************"
-       for envio in arregloEnvios
-          if  envio.dameTipo == "EnvioMaritimo"
-          	puts "#{envio.codigoEnvio}  .... #{envio.razonSocial}"
-          end
-       end
-   end
    def imprimirTodos
    	 puts "Envios Todos **********"
    	 for envio in arregloEnvios
@@ -85,7 +77,7 @@ class Jefe
    end
 end
 class Factoria
-   def self.create(tipo, *arg)
+   def self.create(tipo, arg)
     case tipo
      when "m"
       EnvioMaritimo.new(arg[0],arg[1],arg[2],arg[3])
@@ -118,6 +110,14 @@ class VistaSalida
     def mostrarMensaje(mensaje)
       puts mensaje
     end
+    def imprimirEnvios(envios)
+      puts "********** Envios Maritimos **************"
+       for envio in envios
+          if  envio.dameTipo == "EnvioMaritimo"
+            puts "#{envio.codigoEnvio}  .... #{envio.razonSocial}"
+          end
+       end
+    end
 end
 
 class Controlador
@@ -137,14 +137,18 @@ class Controlador
       mensaje = jefe.registrar(envio)
       vistaSalida.mostrarMensaje(mensaje)
   end
+  def imprimirEnviosMaritimos
+      envios =  jefe.arregloEnvios
+      vistaSalida.imprimirEnvios(envios)
+  end
 end
 
-###### TEST ######
+###### TEST ######   TDD
 jefe = Jefe.new
 vistaEntrada = VistaEntrada.new
 vistaSalida = VistaSalida.new
 controlador = Controlador.new(vistaEntrada, vistaSalida, jefe)
 controlador.registrarEnvio("m")
-#controlador.imprimirEnviosMaritimos
+controlador.imprimirEnviosMaritimos
 
 
