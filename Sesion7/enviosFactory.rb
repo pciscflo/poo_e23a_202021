@@ -145,6 +145,6 @@ vistaEntrada = VistaEntrada.new
 vistaSalida = VistaSalida.new
 controlador = Controlador.new(vistaEntrada, vistaSalida, jefe)
 controlador.registrarEnvio("m")
-controlador.imprimirEnviosMaritimos
+#controlador.imprimirEnviosMaritimos
 
 
