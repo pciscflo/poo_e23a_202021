@@ -28,6 +28,27 @@ class Profesor
     end
 end
 
+class VistaEntrada
+    def capturarDatosAlumno
+      datos=[]
+      print("Codigo:")
+      codigo = gets.chomp.to_s
+      print("Nota1:")
+      nota1 = gets.chomp.to_i
+      print("Nota2:")
+      nota2=gets.chomp.to_i
+      datos.push(codigo, nota1, nota2)
+      return datos
+    end
+end
+class VistaSalida
+  def mostrarMensaje(mensaje)
+        puts mensaje
+  end
+  def imprimirReporte(arreglo)
+  end
+end
+
 class Controlador
 	attr_reader :vistaEntrada, :vistaSalida, :profesor
 	def initialize(vistaEntrada, vistaSalida, profesor)
@@ -45,24 +66,7 @@ class Controlador
 
 end
 
-class VistaEntrada
-    def capturarDatosAlumno
-    	datos=[]
-    	print("Codigo:")
-    	codigo = gets.chomp.to_s
-    	print("Nota1:")
-    	nota1 = gets.chomp.to_i
-    	print("Nota2:")
-    	nota2=gets.chomp.to_i
-    	datos.push(codigo, nota1, nota2)
-    	return datos
-    end
-end
-class VistaSalida
-	def mostrarMensaje(mensaje)
-        puts mensaje
-	end
-end
+
 
 ############# Test ##############
 
