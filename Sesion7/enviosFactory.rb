@@ -50,9 +50,9 @@ class Jefe
    	#verificar si el codigo de envio existe....
       if verificarExistencia(envio.codigoEnvio) == false
    	      arregloEnvios.push(envio)
-   	      puts "Codigo registrado: #{envio.codigoEnvio}"
+   	      return "Codigo registrado: #{envio.codigoEnvio}"
    	  else
-   	  	puts "Codigo ya existe #{envio.codigoEnvio}"
+   	  	return "Codigo ya existe #{envio.codigoEnvio}"
    	  end
    end
 
@@ -95,21 +95,56 @@ class Factoria
    end
 end
 
-puts "Factoria"
-emar1 = Factoria.create("m","001", 20, 2, "El Farol")
-emar2 = Factoria.create("m","002", 10, 3, "La Barca")
-eultra1 = Factoria.create("U","003", 30, 4, "EMP2", "Luis Perez")
-eultra2 = Factoria.create("U","004", 40, 5, "EMP5", "Juan Perez")
-emar3 = Factoria.create("m", "002", 10, 3, "La Barca")
-###### Pruebas ########
-jefe = Jefe.new
-jefe.registrar(emar1)
-jefe.registrar(emar2)
-jefe.registrar(eultra1)
-jefe.registrar(eultra2)
-jefe.registrar(emar3)
-jefe.imprimirEnviosMaritimos
-jefe.imprimirTodos
+class VistaEntrada
+    def mostrarFormularioEnvioMaritimo
+      datos = []
+      print "codigoEnvio:"
+      codigo = gets.chomp.to_s
+      print "volumenMetrico:"
+      volumenMetrico = gets.chomp.to_f
+      print "categoriaEnvio:"
+      categoriaEnvio = gets.chomp.to_i
+      print "razonSocial:"
+      razonSocial = gets.chomp.to_s
+      datos.push(codigo, volumenMetrico, categoriaEnvio, razonSocial)
+      return datos
+    end
+    def mostrarFormularioEnvioUltramarino
 
+      return datos
+    end
+end
+class VistaSalida
+    def mostrarMensaje(mensaje)
+      puts mensaje
+    end
+end
+
+class Controlador
+  attr_reader :vistaEntrada, :vistaSalida, :jefe
+  def initialize(vistaEntrada, vistaSalida, jefe)
+    @vistaEntrada=vistaEntrada
+    @vistaSalida=vistaSalida
+    @jefe = jefe
+  end
+  def registrarEnvio(tipo)
+      if tipo == "m"
+        datos = vistaEntrada.mostrarFormularioEnvioMaritimo
+       else
+        datos = vistaEntrada.mostrarFormularioEnvioUltramarino
+      end
+      envio = Factoria.create(tipo, datos)
+      mensaje = jefe.registrar(envio)
+      vistaSalida.mostrarMensaje(mensaje)
+  end
+end
+
+###### TEST ######
+jefe = Jefe.new
+vistaEntrada = VistaEntrada.new
+vistaSalida = VistaSalida.new
+controlador = Controlador.new(vistaEntrada, vistaSalida, jefe)
+controlador.registrarEnvio("m")
+controlador.imprimirEnviosMaritimos
 
 
